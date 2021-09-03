@@ -12,6 +12,7 @@ module.exports = {
   devServer: {                 // new line
     contentBase: './dist'      // new line
   },
+
   plugins: [
     new CleanWebpackPlugin(), // new line
     new HtmlWebpackPlugin({
@@ -20,15 +21,22 @@ module.exports = {
       inject: 'body'
     })
   ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
-  }
-};
+  module.exports = {
+    ...
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: "eslint-loader"
+        }
+      ]
+    }
+  };
